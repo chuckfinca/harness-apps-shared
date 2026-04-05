@@ -46,7 +46,7 @@ function callApi(apiBase, endpoint, data) {
     return fetch(apiBase + '/gradio_api/call/' + endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: [data || ''] })
+        body: JSON.stringify({ data: Array.isArray(data) ? data : [data || ''] })
     })
     .then(function(r) { return r.json(); })
     .then(function(result) {
