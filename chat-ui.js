@@ -31,7 +31,7 @@ function markdownToHtml(text) {
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.+?)\*/g, '<em>$1</em>')
         .replace(/`(.+?)`/g, '<code>$1</code>')
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
         .replace(/\n/g, '<br>');
     escaped = escaped.replace(/<ul><br>/g, '<ul>').replace(/<br><\/ul>/g, '</ul>');
     escaped = escaped.replace(/<br><h/g, '<h').replace(/<\/h3><br>/g, '</h3>').replace(/<\/h4><br>/g, '</h4>');
