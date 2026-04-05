@@ -65,6 +65,9 @@ function callApi(apiBase, endpoint, data) {
  * Render a sources list as HTML.
  * options.docLinkBase: if set, doc names become links (e.g. '/doc/')
  */
+var EXTERNAL_LINK_ICON = '<svg class="external-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">'
+    + '<path d="M4.5 1.5H2a.5.5 0 00-.5.5v8a.5.5 0 00.5.5h8a.5.5 0 00.5-.5V7.5M7 1.5h3.5V5M5.5 6.5l5-5"/></svg>';
+
 function renderSources(sources, options) {
     if (!sources || sources.length === 0) return '';
     options = options || {};
@@ -76,9 +79,9 @@ function renderSources(sources, options) {
         var cls = s.matched ? 'chat-source' : 'chat-source unmatched';
         var docName;
         if (options.docLinkBase && s.file) {
-            docName = '<a class="chat-source-link" href="' + options.docLinkBase + encodeURIComponent(s.file.replace('.md', '')) + '" target="_blank">'
-                + escapeHtml(s.doc)
-                + '<svg class="external-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.5 1.5H2a.5.5 0 00-.5.5v8a.5.5 0 00.5.5h8a.5.5 0 00.5-.5V7.5M7 1.5h3.5V5M5.5 6.5l5-5"/></svg></a>';
+            var href = options.docLinkBase + encodeURIComponent(s.file.replace('.md', ''));
+            docName = '<a class="chat-source-link" href="' + href + '" target="_blank">'
+                + escapeHtml(s.doc) + EXTERNAL_LINK_ICON + '</a>';
         } else {
             docName = escapeHtml(s.doc);
         }
