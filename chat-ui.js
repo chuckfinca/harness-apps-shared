@@ -85,9 +85,12 @@ function renderSources(sources, options) {
         } else {
             docName = escapeHtml(s.doc);
         }
+        var quoteHtml = s.quote
+            ? ' <em class="chat-source-quote">"' + escapeHtml(s.quote) + '"</em>'
+            : '';
         html += '<div class="' + cls + '">'
-            + superscript(s.id) + ' <strong class="chat-source-doc">' + docName + '</strong> '
-            + '<em class="chat-source-quote">"' + escapeHtml(s.quote) + '"</em></div>';
+            + superscript(s.id) + ' <strong class="chat-source-doc">' + docName + '</strong>'
+            + quoteHtml + '</div>';
     });
     html += '</div>';
     return html;
